@@ -1,3 +1,24 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@font-face {
+    font-family: FiraGo;
+    src: url("./assets/fonts/FiraGO-Bold.otf") format("opentype");
+  }
+
+@layer base {
+    html {
+        background-color: #F3F2FA;
+        font-family: 'FiraGO', 'sans-serif';
+    }
+}
+
+@layer utilities {
+    .container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 20px 76px;
+    }
+}

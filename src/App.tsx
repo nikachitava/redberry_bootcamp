@@ -1,9 +1,12 @@
 import "./App.css";
+import { NavigationMenu } from "./components/NavigationMenu";
+import { Hero } from "./sections/Hero";
 
 function App() {
   return (
     <>
-      <h1 className="text-3xl text-[#50d71e]">Hello Redberry</h1>
+      <NavigationMenu />
+      <Hero />
     </>
   );
 }
