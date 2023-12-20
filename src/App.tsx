@@ -1,5 +1,6 @@
 import "./App.css";
 import { NavigationMenu } from "./components/NavigationMenu";
+import { CategoriesMenu } from "./sections/CategoriesMenu";
 import { Hero } from "./sections/Hero";
 
 function App() {
@@ -7,6 +8,7 @@ function App() {
     <>
       <NavigationMenu />
       <Hero />
+      <CategoriesMenu />
     </>
   );
 }
