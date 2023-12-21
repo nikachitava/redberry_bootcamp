@@ -1,5 +1,6 @@
 import "./App.css";
 import { NavigationMenu } from "./components/NavigationMenu";
+import { BlogsSection } from "./sections/BlogsSection";
 import { CategoriesMenu } from "./sections/CategoriesMenu";
 import { Hero } from "./sections/Hero";
 
@@ -9,7 +10,8 @@ function App() {
       <NavigationMenu />
       <Hero />
       <div className="my_container">
-        <CategoriesMenu />
+        {/* <CategoriesMenu /> */}
+        <BlogsSection />
       </div>
     </>
   );
