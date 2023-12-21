@@ -2,6 +2,8 @@ import { useForm, SubmitHandler } from "react-hook-form";
 import close from "/images/close.svg";
 import succesful_login from "/images/succes.svg";
 import warning from "/images/warning.svg";
+import axios from "axios";
+import { useState } from "react";
 
 interface ILoginModalProps {
   handleModal: () => void;
@@ -16,16 +18,41 @@ export const LoginModal: React.FC<ILoginModalProps> = ({
   handleModal,
   showModal,
 }) => {
-  //   const [succes, setSucces] = useState(false);
-  const succes = false;
+  const [succes, setSucces] = useState(false);
 
   const {
     register,
     handleSubmit,
-    watch,
+    setError,
+    clearErrors,
     formState: { errors },
   } = useForm<Input>();
-  const onSubmit: SubmitHandler<Input> = (data) => console.log(data);
+  const onSubmit: SubmitHandler<Input> = async (data) => {
+    try {
+      clearErrors("email");
+      const token = import.meta.env.APP_API_TOKEN;
+
+      const response = await axios.post(
+        "https://api.blog.redberryinternship.ge/api/login",
+        {
+          email: data.email,
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+      if (response.status === 204) {
+        setSucces(true);
+      }
+    } catch (error) {
+      setError("email", {
+        type: "manual",
+        message: "ელ-ფოსტა არ მოიძებნა",
+      });
+    }
+  };
 
   return (
     <div

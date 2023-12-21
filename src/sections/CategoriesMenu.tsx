@@ -20,7 +20,6 @@ export const CategoriesMenu = () => {
           }
         );
         setCategories(response.data.data);
-        console.log(response.data.data);
       } catch (error) {
         console.log("Error fetching data: ", error);
       }
@@ -33,7 +32,7 @@ export const CategoriesMenu = () => {
     <div className="my-[64px]">
       <ul className="flex justify-center gap-[24px]">
         {categories.map((category) => (
-          <li className="cursor-pointer">
+          <li key={category.id} className="cursor-pointer">
             <CategoryButton
               key={category.id}
               background_color={category.background_color}
