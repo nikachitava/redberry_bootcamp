@@ -4,7 +4,7 @@
 
 @font-face {
     font-family: FiraGo;
-    src: url("./assets/fonts/FiraGO-Bold.otf") format("opentype");
+    src: url("./assets/fonts/FiraGO-Regular.woff2") format("opentype");
   }
 
 @layer base {
