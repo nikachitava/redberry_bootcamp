@@ -1,4 +1,5 @@
 import close from "/images/close.svg";
+import succesful_login from "/images/succes.svg";
 
 interface ILoginModalProps {
   handleModal: () => void;
@@ -9,10 +10,13 @@ export const LoginModal: React.FC<ILoginModalProps> = ({
   handleModal,
   showModal,
 }) => {
+  //   const [succes, setSucces] = useState(false);
+  const succes = false;
+
   return (
     <div
       className={`${
-        showModal ? "fixed inset-0 bg-black bg-opacity-[.4]" : null
+        showModal ? "fixed inset-0 bg-black bg-opacity-[.5]" : null
       }`}
     >
       <div
@@ -26,22 +30,40 @@ export const LoginModal: React.FC<ILoginModalProps> = ({
           alt="close"
           onClick={handleModal}
         />
-        <h1 className="text-center text-[#1A1A1F] font-bold text-[24px] leading-8">
-          შესვლა
-        </h1>
-        <form className="flex flex-col">
-          <label className="text-[#1a1a1F] text-[14px] leading-5">
-            ელ-ფოსტა
-          </label>
-          <input
-            className="mt-[8px] mb-[24px] px-[16px] py-[12px] outline-none border-[1.5px] focus:border-[#5D37F3] rounded-[12px]"
-            type="text"
-            placeholder="example@redberry.ge"
-          />
-          <button className="bg-[#5D37F3] py-[10px] text-white rounded-[8px] text-[14px] leading-5 font-medium">
-            შესვლა
-          </button>
-        </form>
+
+        {succes ? (
+          <div className="flex flex-col">
+            <img className="m-auto" src={succesful_login} alt="succes" />
+            <h1 className="text-center text-[#1A1A1F] font-bold text-[20px] leading-7 mb-[48px]">
+              წარმატებული ავტორიზაცია
+            </h1>
+            <button
+              className="bg-[#5D37F3] py-[10px] text-white rounded-[8px] text-[14px] leading-5 font-medium"
+              onClick={handleModal}
+            >
+              კარგი
+            </button>
+          </div>
+        ) : (
+          <>
+            <form className="flex flex-col">
+              <h1 className="text-center text-[#1A1A1F] font-bold text-[24px] leading-8 mb-[24px]">
+                შესვლა
+              </h1>
+              <label className="text-[#1a1a1F] text-[14px] leading-5">
+                ელ-ფოსტა
+              </label>
+              <input
+                className="mt-[8px] mb-[24px] px-[16px] py-[12px] outline-none border-[1.5px] focus:border-[#5D37F3] rounded-[12px]"
+                type="text"
+                placeholder="example@redberry.ge"
+              />
+              <button className="bg-[#5D37F3] py-[10px] text-white rounded-[8px] text-[14px] leading-5 font-medium">
+                შესვლა
+              </button>
+            </form>
+          </>
+        )}
       </div>
     </div>
   );
