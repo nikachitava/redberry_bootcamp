@@ -10,7 +10,7 @@ function App() {
       <NavigationMenu />
       <Hero />
       <div className="my_container">
-        {/* <CategoriesMenu /> */}
+        <CategoriesMenu />
         <BlogsSection />
       </div>
     </>
