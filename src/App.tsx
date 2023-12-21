@@ -8,7 +8,9 @@ function App() {
     <>
       <NavigationMenu />
       <Hero />
-      <CategoriesMenu />
+      <div className="my_container">
+        <CategoriesMenu />
+      </div>
     </>
   );
 }

@@ -7,7 +7,11 @@ export const CategoryButton: React.FC<ICategoryButtonProps> = ({
   id,
 }) => {
   return (
-    <div key={id} className={`text-[${text_color}] px-[16px] py-[8px]`}>
+    <div
+      key={id}
+      style={{ backgroundColor: background_color, color: text_color }}
+      className="px-[16px] py-[8px] rounded-[30px] text-[12px] font-medium whitespace-nowrap"
+    >
       {title}
     </div>
   );
