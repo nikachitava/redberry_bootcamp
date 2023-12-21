@@ -1,10 +1,16 @@
+import { useForm, SubmitHandler } from "react-hook-form";
 import close from "/images/close.svg";
 import succesful_login from "/images/succes.svg";
+import warning from "/images/warning.svg";
 
 interface ILoginModalProps {
   handleModal: () => void;
   showModal: boolean;
 }
+
+type Input = {
+  email: string;
+};
 
 export const LoginModal: React.FC<ILoginModalProps> = ({
   handleModal,
@@ -12,6 +18,14 @@ export const LoginModal: React.FC<ILoginModalProps> = ({
 }) => {
   //   const [succes, setSucces] = useState(false);
   const succes = false;
+
+  const {
+    register,
+    handleSubmit,
+    watch,
+    formState: { errors },
+  } = useForm<Input>();
+  const onSubmit: SubmitHandler<Input> = (data) => console.log(data);
 
   return (
     <div
@@ -46,7 +60,7 @@ export const LoginModal: React.FC<ILoginModalProps> = ({
           </div>
         ) : (
           <>
-            <form className="flex flex-col">
+            <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col">
               <h1 className="text-center text-[#1A1A1F] font-bold text-[24px] leading-8 mb-[24px]">
                 შესვლა
               </h1>
@@ -54,11 +68,30 @@ export const LoginModal: React.FC<ILoginModalProps> = ({
                 ელ-ფოსტა
               </label>
               <input
-                className="mt-[8px] mb-[24px] px-[16px] py-[12px] outline-none border-[1.5px] focus:border-[#5D37F3] rounded-[12px]"
+                className={`${
+                  errors.email
+                    ? "border-[#EA1919] bg-[#faf2f3]"
+                    : "focus:border-[#5D37F3]"
+                } mt-[8px] px-[16px] py-[12px] outline-none border-[1.5px] rounded-[12px]`}
                 type="text"
                 placeholder="example@redberry.ge"
+                {...register("email", {
+                  required: "სავალდებულოა",
+                  pattern: {
+                    value: /@redberry\.ge$/,
+                    message: "უნდა მთავრდებოდეს @redberry.ge-თ",
+                  },
+                })}
               />
-              <button className="bg-[#5D37F3] py-[10px] text-white rounded-[8px] text-[14px] leading-5 font-medium">
+              {errors.email && (
+                <div className="flex gap-[8px] mt-[8px]">
+                  <img src={warning} alt="warning" />
+                  <p className="text-[#EA1919] text-[12px] leading-5 font-normal">
+                    {errors.email.message}
+                  </p>
+                </div>
+              )}
+              <button className="bg-[#5D37F3] mt-[24px] py-[10px] text-white rounded-[8px] text-[14px] leading-5 font-medium">
                 შესვლა
               </button>
             </form>
