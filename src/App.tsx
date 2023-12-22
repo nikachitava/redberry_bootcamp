@@ -1,8 +1,14 @@
 import { createContext, useState } from "react";
-import { NavigationMenu } from "./components/NavigationMenu";
-import { BlogsSection } from "./sections/BlogsSection";
-import { CategoriesMenu } from "./sections/CategoriesMenu";
-import { Hero } from "./sections/Hero";
+
+import {
+  Route,
+  RouterProvider,
+  createBrowserRouter,
+  createRoutesFromElements,
+} from "react-router-dom";
+import { HomePage } from "./Pages/HomePage";
+import { AddBlogPage } from "./Pages/AddBlogPage";
+import { Root } from "./Pages/Root";
 
 type userInfo = {
   isLoggedIn: boolean;
@@ -14,17 +20,21 @@ export const UserContext = createContext<userInfo>({
   setIsLoggedIn: () => {},
 });
 
+const router = createBrowserRouter(
+  createRoutesFromElements(
+    <Route path="/" element={<Root />}>
+      <Route index element={<HomePage />} />
+      <Route path="/addblog" element={<AddBlogPage />} />
+    </Route>
+  )
+);
+
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
 
   return (
     <UserContext.Provider value={{ isLoggedIn, setIsLoggedIn }}>
-      <NavigationMenu />
-      <Hero />
-      <div className="my_container">
-        <CategoriesMenu />
-        <BlogsSection />
-      </div>
+      <RouterProvider router={router} />
     </UserContext.Provider>
   );
 }

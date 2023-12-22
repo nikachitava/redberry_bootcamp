@@ -1,4 +1,3 @@
-import { useEffect, useState } from "react";
 import { BlogCard } from "../components/BlogCard";
 import { CategoryButton } from "../components/CategoryButton";
 import blog_img from "/images/blog_img.svg";
