@@ -3,7 +3,8 @@ import close from "/images/close.svg";
 import succesful_login from "/images/succes.svg";
 import warning from "/images/warning.svg";
 import axios from "axios";
-import { useState } from "react";
+import { useContext, useState } from "react";
+import { UserContext } from "../App";
 
 interface ILoginModalProps {
   handleModal: () => void;
@@ -18,6 +19,7 @@ export const LoginModal: React.FC<ILoginModalProps> = ({
   handleModal,
   showModal,
 }) => {
+  const context = useContext(UserContext);
   const [succes, setSucces] = useState(false);
 
   const {
@@ -27,6 +29,7 @@ export const LoginModal: React.FC<ILoginModalProps> = ({
     clearErrors,
     formState: { errors },
   } = useForm<Input>();
+
   const onSubmit: SubmitHandler<Input> = async (data) => {
     try {
       clearErrors("email");
@@ -45,6 +48,8 @@ export const LoginModal: React.FC<ILoginModalProps> = ({
       );
       if (response.status === 204) {
         setSucces(true);
+        context.setIsLoggedIn(true);
+        sessionStorage.setItem("isLoggedIn", JSON.stringify(true));
       }
     } catch (error) {
       setError("email", {
