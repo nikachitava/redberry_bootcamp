@@ -78,14 +78,7 @@ export const AddBlogPage = () => {
                 <input className="h-[44px]" type="date" />
               </div>
               <div className="w-[288px] flex flex-col">
-                <label>სათაური *</label>
-                <select className="h-[44px] bg-[#FCFCFD] pl-[16px] py-[12px] outline-none rounded-xl border-[#E4E3EB] border-[1px]">
-                  <option>1</option>
-                  <option>2</option>
-                  <option>3</option>
-                  <option>4</option>
-                  <option>5</option>
-                </select>
+                <label>კატეგორია *</label>
               </div>
             </div>
             <div className="flex flex-col">
@@ -101,17 +94,16 @@ export const AddBlogPage = () => {
           </div>
         </form>
       </main>
+      <br />
     </div>
   );
 };
 
-/*<div className="flex flex-col">
-            <label>ატვირთეთ ფოტო</label>
-            <div className="w-[600px] flex flex-col justify-center items-center py-[48px] bg-[#F4F3FF] border-dashed border border-[#85858D]">
-              <div>
-                <img src={upload_img} alt="upload_img" />
-              </div>
-              <input className="opacity-0" type="file" />
-              ჩააგდეთ ფაილი აქ ან <span>აირჩიეთ ფაილი</span>
-            </div>
-          </div> */
+// <label>კატეგორია *</label>
+//           <select className="h-[44px] bg-[#FCFCFD] pl-[16px] py-[12px] outline-none rounded-xl border-[#E4E3EB] border-[1px]">
+//             <option>1</option>
+//             <option>2</option>
+//             <option>3</option>
+//             <option>4</option>
+//             <option>5</option>
+//           </select>
